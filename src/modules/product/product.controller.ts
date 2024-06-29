@@ -38,11 +38,23 @@ const getAllProduct = async (req: Request, res: Response) => {
 
 }
 
+// Retrieve a Specific Product by ID
+const getProductById = async (req: Request, res: Response) => {
+    try {
+        const result = await productServices.getProductById(req.params.productId)
+        ResponseHook(res, true, "Product fetched successfully!", result)
+    } catch (error) {
+        ResponseHook(res, false, "failed to fetch product")
+
+    }
+}
+
 
 
 
 // exporting all the controllers 
 export const productControllers = {
     createProduct,
-    getAllProduct
+    getAllProduct,
+    getProductById
 }

@@ -17,7 +17,14 @@ const getAllProduct = () => {
     return result
 }
 
+// get product by id
+const getProductById = async (payLoad: string) => {
+    const result = await Product.findById(payLoad)
+    return result;
+}
+
 export const productServices = {
     createProduct,
-    getAllProduct
+    getAllProduct,
+    getProductById
 }

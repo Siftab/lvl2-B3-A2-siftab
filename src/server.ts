@@ -3,7 +3,7 @@ import { app } from "./app";
 import config from "./config";
 // const port = 5000
 
-async function main() {
+async function powerHub() {
     try {
         await mongoose.connect(config.db_url as string);
         app.listen(config.port, () => {
@@ -16,4 +16,4 @@ async function main() {
 
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-main()
+powerHub()

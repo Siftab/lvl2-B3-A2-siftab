@@ -2,7 +2,6 @@ import express, { Application, Request, Response } from "express"
 export const app: Application = express()
 import cors from "cors"
 import { productRouter } from "./modules/product/product.route"
-const port = 3000
 
 
 // parser

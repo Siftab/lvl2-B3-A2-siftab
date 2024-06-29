@@ -10,24 +10,29 @@ const createProduct = async (req: Request, res: Response) => {
     try {
 
         const result = await productServices.createProduct(req.body)
-        // res.json({
-        //     success: true,
-        //     message: "Product created successfully!",
-        //     data: result
-        // })
+
         ResponseHook(res, true, "product created successfully ", result)
 
     } catch (error) {
 
-        // res.json({
-        //     success: false,
-        //     message: "Product not created successfully!",
-        //     data: error
 
-        // })
         ResponseHook(res, false, "product failed to create")
 
 
+
+    }
+
+}
+// get all product 
+
+const getAllProduct = async (req: Request, res: Response) => {
+    try {
+        const result = await productServices.getAllProduct()
+
+        ResponseHook(res, true, "Products fetched successfully!", result)
+
+    } catch (error) {
+        ResponseHook(res, false, "failed to fetch all product")
 
     }
 
@@ -38,5 +43,6 @@ const createProduct = async (req: Request, res: Response) => {
 
 // exporting all the controllers 
 export const productControllers = {
-    createProduct
+    createProduct,
+    getAllProduct
 }

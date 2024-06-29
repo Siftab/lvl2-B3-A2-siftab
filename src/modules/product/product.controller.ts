@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { productServices } from "./product.services"
-import { response } from "../../app/hooks/response"
+import { ResponseHook } from "../../app/hooks/response"
 
 
 
@@ -15,7 +15,7 @@ const createProduct = async (req: Request, res: Response) => {
         //     message: "Product created successfully!",
         //     data: result
         // })
-        response(res, true, "product created successfully ", result)
+        ResponseHook(res, true, "product created successfully ", result)
 
     } catch (error) {
 
@@ -25,7 +25,7 @@ const createProduct = async (req: Request, res: Response) => {
         //     data: error
 
         // })
-        response(res, false, "product failed to create")
+        ResponseHook(res, false, "product failed to create")
 
 
 

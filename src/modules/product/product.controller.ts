@@ -48,6 +48,17 @@ const getProductById = async (req: Request, res: Response) => {
 
     }
 }
+// update 
+const updateProduct = async (req: Request, res: Response) => {
+    try {
+        const result = await productServices.updateProduct(req.params.productId, req.body)
+        ResponseHook(res, true, "Product updated successfully!", result)
+    } catch (error) {
+        ResponseHook(res, false, "failed to update product")
+
+    }
+}
+
 
 
 
@@ -56,5 +67,6 @@ const getProductById = async (req: Request, res: Response) => {
 export const productControllers = {
     createProduct,
     getAllProduct,
-    getProductById
+    getProductById,
+    updateProduct
 }

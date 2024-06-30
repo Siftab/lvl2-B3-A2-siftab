@@ -22,9 +22,18 @@ const getProductById = async (payLoad: string) => {
     const result = await Product.findById(payLoad)
     return result;
 }
+// updating product
+const updateProduct = async (id: string, payLoad: TProduct) => {
+    payLoad.inventory.quantity = payLoad.inventory.quantity - 1;
+    console.log(payLoad.inventory.quantity)
+    const result = await Product.findByIdAndUpdate(id, { $set: { "inventory.quantity": payLoad.inventory.quantity } })
+    return result
+
+}
 
 export const productServices = {
     createProduct,
     getAllProduct,
-    getProductById
+    getProductById,
+    updateProduct
 }

@@ -59,6 +59,18 @@ const updateProduct = async (req: Request, res: Response) => {
     }
 }
 
+// delete a product form DB
+const deleteProduct = async (req: Request, res: Response) => {
+    try {
+        const { productId } = req.params
+        const result = await productServices.deleteProduct(productId)
+        ResponseHook(res, true, "product deleted successfully ", result)
+    } catch (error) {
+
+        ResponseHook(res, false, "failed to delete product")
+
+    }
+}
 
 
 
@@ -68,5 +80,6 @@ export const productControllers = {
     createProduct,
     getAllProduct,
     getProductById,
-    updateProduct
+    updateProduct,
+    deleteProduct
 }

@@ -22,7 +22,7 @@ const getProductById = async (payLoad: string) => {
     const result = await Product.findById(payLoad)
     return result;
 }
-// updating product
+// updating product  ---need clarification
 const updateProduct = async (id: string, payLoad: TProduct) => {
     payLoad.inventory.quantity = payLoad.inventory.quantity - 1;
     console.log(payLoad.inventory.quantity)
@@ -30,10 +30,19 @@ const updateProduct = async (id: string, payLoad: TProduct) => {
     return result
 
 }
+// delete a product 
+const deleteProduct = async (id: string) => {
+    const result = await Product.findByIdAndDelete(id)
+    return result
+}
+
+
+
 
 export const productServices = {
     createProduct,
     getAllProduct,
     getProductById,
-    updateProduct
+    updateProduct,
+    deleteProduct
 }

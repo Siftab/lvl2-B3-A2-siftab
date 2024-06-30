@@ -12,8 +12,18 @@ const createProduct = async (payload: TProduct) => {
     return result
 }
 // retrive all product
-const getAllProduct = () => {
-    const result = Product.find();
+const getAllProduct = async () => {
+    const result = await Product.find();
+    return result
+}
+// retrive all product
+const findByQuery = async (data: string) => {
+    const result = await Product.find({
+        tags: {
+            $regex: data,
+            $options: "i"
+        }
+    })
     return result
 }
 
@@ -44,5 +54,6 @@ export const productServices = {
     getAllProduct,
     getProductById,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    findByQuery
 }

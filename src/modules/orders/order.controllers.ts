@@ -6,15 +6,18 @@
 import { Request, Response } from "express"
 import { ResponseHook } from "../../app/hooks/response"
 import { orderServices } from "./order.servicesl"
+import { zodOrderSchema } from "./order.zod.validation"
 
 //creating order
 const createOrder = async (req: Request, res: Response) => {
 
     try {
+        const zodData = zodOrderSchema.parse(req.body)
+        console.log(zodData)
         const result = await orderServices.createOrder(req.body)
         ResponseHook(res, true, "Order created successfully!", result)
     } catch (error) {
-        ResponseHook(res, false, "failed to create order ")
+        ResponseHook(res, false, "failed to create order ", error)
 
     }
 }

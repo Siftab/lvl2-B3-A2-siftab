@@ -23,21 +23,7 @@ const createProduct = async (req: Request, res: Response) => {
     }
 
 }
-// // get all product 
 
-// const getAllProduct = async (req: Request, res: Response) => {
-//     try {
-
-//         const result = await productServices.getAllProduct()
-
-//         ResponseHook(res, true, "Products fetched successfully!", result)
-
-//     } catch (error) {
-//         ResponseHook(res, false, "failed to fetch all product")
-
-//     }
-
-// }
 // get all product 
 
 const getAllProduct = async (req: Request, res: Response) => {

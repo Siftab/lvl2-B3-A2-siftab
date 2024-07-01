@@ -43,7 +43,7 @@ const createProduct = async (req: Request, res: Response) => {
 const getAllProduct = async (req: Request, res: Response) => {
     try {
         const { searchTerm } = req.query
-        // console.log(typeof (searchTerm))
+
         // if query attached then this will work o
         if (searchTerm) {
             const result = await productServices.findByQuery(searchTerm as string)

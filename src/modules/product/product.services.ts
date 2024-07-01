@@ -35,7 +35,6 @@ const getProductById = async (payLoad: string) => {
 // updating product  ---need clarification
 const updateProduct = async (id: string, payLoad: TProduct) => {
     payLoad.inventory.quantity = payLoad.inventory.quantity - 1;
-    console.log(payLoad.inventory.quantity)
     const result = await Product.findByIdAndUpdate(id, { $set: { "inventory.quantity": payLoad.inventory.quantity } })
     return result
 

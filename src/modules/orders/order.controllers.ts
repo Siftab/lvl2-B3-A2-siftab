@@ -13,8 +13,7 @@ const createOrder = async (req: Request, res: Response) => {
 
     try {
         const zodData = zodOrderSchema.parse(req.body)
-        console.log(zodData)
-        const result = await orderServices.createOrder(req.body)
+        const result = await orderServices.createOrder(zodData)
         ResponseHook(res, true, "Order created successfully!", result)
     } catch (error) {
         ResponseHook(res, false, "failed to create order ", error)

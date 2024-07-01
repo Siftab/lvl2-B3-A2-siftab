@@ -15,9 +15,15 @@ const getAllOrder = async () => {
     const result = await Order.find()
     return result
 }
+// getting order with query data 
+const queryOrders = async (data: string) => {
+    const result = await Order.find({ email: data })
+    return result
+}
 
 
 export const orderServices = {
     createOrder,
-    getAllOrder
+    getAllOrder,
+    queryOrders
 }

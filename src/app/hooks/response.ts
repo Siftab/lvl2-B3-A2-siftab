@@ -1,5 +1,5 @@
 import { Response } from "express"
-export const ResponseHook = (res: Response, success: boolean, message: string, data: object | null = []) => {
+export const ResponseHook = (res: Response, success: boolean, message: string, data: any = []) => {
 
     return res.json({
         success: success,

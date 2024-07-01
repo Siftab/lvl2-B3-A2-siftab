@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { productServices } from "./product.services"
 import { ResponseHook } from "../../app/hooks/response"
+import { zodProductSchema } from "./product.zod"
 
 
 
@@ -8,15 +9,15 @@ import { ResponseHook } from "../../app/hooks/response"
 const createProduct = async (req: Request, res: Response) => {
 
     try {
-
-        const result = await productServices.createProduct(req.body)
+        const zodData = zodProductSchema.parse(req.body)
+        const result = await productServices.createProduct(zodData)
 
         ResponseHook(res, true, "product created successfully ", result)
 
     } catch (error) {
 
 
-        ResponseHook(res, false, "product failed to create")
+        ResponseHook(res, false, "product failed to create", error)
 
 
 
@@ -69,10 +70,12 @@ const getProductById = async (req: Request, res: Response) => {
 // update 
 const updateProduct = async (req: Request, res: Response) => {
     try {
-        const result = await productServices.updateProduct(req.params.productId, req.body)
+        const zodData = zodProductSchema.parse(req.body)
+        const result = await productServices.updateProduct(req.params.productId, zodData)
+
         ResponseHook(res, true, "Product updated successfully!", result)
     } catch (error) {
-        ResponseHook(res, false, "failed to update product")
+        ResponseHook(res, false, "failed to update product", error)
 
     }
 }

@@ -1,5 +1,4 @@
 
-import { ResponseHook } from "../../app/hooks/response"
 import { Order } from "./order.model"
 
 

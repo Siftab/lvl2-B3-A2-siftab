@@ -24,7 +24,8 @@ const getAllOrder = async (req: Request, res: Response) => {
         const { email } = req.query
         if (email) {
             const result = await orderServices.queryOrders(email as string)
-            return ResponseHook(res, true, `Orders fetched successfully for ${email} email!`, result)
+            if (result.length > 0) { return ResponseHook(res, true, `Orders fetched successfully for ${email} email!`, result) }
+            else { return ResponseHook(res, false, "no orders found with this email") }
 
         }
         const result = await orderServices.getAllOrder()
